@@ -4,20 +4,8 @@ import { ApolloServerPluginDrainHttpServer } from '@apollo/server/plugin/drainHt
 import { createServer } from 'http';
 import { expressMiddleware } from '@apollo/server/express4';
 import gql from 'graphql-tag';
-
-// Construct a schema, using GraphQL schema language
-const typeDefs = gql`
-  type Query {
-    hello: String
-  }
-`;
-
-// Provide resolver functions for your schema fields
-const resolvers = {
-  Query: {
-    hello: () => 'Hello, world!',
-  },
-};
+import { typeDefs } from './graphql/typeDefs.js';
+import { resolvers } from './graphql/resolvers.js';
 
 async function startApolloServer(typeDefs, resolvers) {
   const app = express();
